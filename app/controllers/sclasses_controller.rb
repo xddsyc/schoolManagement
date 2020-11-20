@@ -1,4 +1,7 @@
 class SclassesController < ApplicationController
+
+	# breadcrumb 'Home', sclasses_path
+
 	def index
 		@sclasses = Sclass.all
 	end
@@ -33,6 +36,8 @@ class SclassesController < ApplicationController
 
 	def show
 		@sclass = Sclass.find(params[:id])
+
+		# breadcrumb  @sclass.id, sclass_path(@sclass)
 	end
 
 	def destroy
