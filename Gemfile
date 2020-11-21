@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails'
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

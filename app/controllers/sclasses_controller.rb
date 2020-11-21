@@ -3,7 +3,7 @@ class SclassesController < ApplicationController
 	# breadcrumb 'Home', sclasses_path
 
 	def index
-		@sclasses = Sclass.all
+		@sclasses = Sclass.order('id desc').page(params[:page]).per(5)
 	end
 
 	def new

@@ -9,7 +9,7 @@
 				<th>ID</th>
 				<th>年级</th>
 				<th>班级</th>
-				<th></th>
+				<th>操作</th>
 			</tr>
 
 			<% @sclasses.each do |sclass| %>
@@ -18,12 +18,13 @@
 					<td><%= sclass.grade_name %></td>
 					<td><%= sclass.class_name %></td>
 					<td>
-						<%= link_to 'Show', sclass_path(sclass) %>
-						<%= link_to 'Edit', edit_sclass_path(sclass) %>
-						<%= link_to 'Destroy', sclass_path(sclass), method: :delete, data: { confirm: 'Are you sure?' } %>
+						<%= link_to '查看', sclass_path(sclass) %>
+						<%= link_to '编辑', edit_sclass_path(sclass) %>
+						<%= link_to '删除', sclass_path(sclass), method: :delete, data: { confirm: '删除班级会删除班级下的学生，你确定要执行此操作吗?' } %>
 						</td>
 				</tr>
 			<% end %>
 		</table>
+		<%= paginate @sclasses %>
 	</div>
 </div>
