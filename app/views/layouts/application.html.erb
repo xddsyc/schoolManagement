@@ -12,12 +12,14 @@
   <body>
     <%= render "layouts/navbar" %>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Library</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Data</li>
-        </ol>
-      </nav>
+      <ol class='breadcrumb'>
+        <% breadcrumb_trail do |crumb| %>
+          <li class="breadcrumb-item <%= crumb.current? ? 'active' : '' %>">
+            <%= link_to_unless crumb.current?, crumb.name, crumb.url, (crumb.current? ? {'aria-current' => 'page'} : {}) %>
+          </li>
+        <% end %>
+      </ol>
+    </nav>
     <div class="container">
         <%= yield %>
     </div>

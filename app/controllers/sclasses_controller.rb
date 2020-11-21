@@ -1,6 +1,6 @@
 class SclassesController < ApplicationController
 
-	# breadcrumb 'Home', sclasses_path
+	breadcrumb '班级管理', :sclasses_path
 
 	def index
 		@sclasses = Sclass.order('id desc').page(params[:page]).per(5)
@@ -37,7 +37,7 @@ class SclassesController < ApplicationController
 	def show
 		@sclass = Sclass.find(params[:id])
 
-		# breadcrumb  @sclass.id, sclass_path(@sclass)
+		breadcrumb '详情', sclass_path(@sclass)
 	end
 
 	def destroy
