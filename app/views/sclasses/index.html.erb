@@ -1,20 +1,29 @@
-<h1>Listing classes</h1>
+<div class="sclasses-index">
+	<h1>班级管理</h1>
+	<p>
+		<%= link_to '新增班级', new_sclass_path, class: "btn btn-success" %>
+	</p>
+	<div class="grid-view">
+		<table class="table table-striped table-bordered">
+			<tr>
+				<th>ID</th>
+				<th>年级</th>
+				<th>班级</th>
+				<th></th>
+			</tr>
 
-<%= link_to 'New class', new_sclass_path %>
-<table>
-	<tr>
-		<th>年级</th>
-		<th>班级</th>
-		<th colspan="3"></th>
-	</tr>
-
-	<% @sclasses.each do |sclass| %>
-		<tr>
-			<td><%= sclass.grade_name %></td>
-			<td><%= sclass.class_name %></td>
-			<td><%= link_to 'Show', sclass_path(sclass) %></td>
-			<td><%= link_to 'Edit', edit_sclass_path(sclass) %></td>
-			<td><%= link_to 'Destroy', sclass_path(sclass), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		</tr>
-	<% end %>
-</table>
+			<% @sclasses.each do |sclass| %>
+				<tr>
+					<td><%= sclass.id %></td>
+					<td><%= sclass.grade_name %></td>
+					<td><%= sclass.class_name %></td>
+					<td>
+						<%= link_to 'Show', sclass_path(sclass) %>
+						<%= link_to 'Edit', edit_sclass_path(sclass) %>
+						<%= link_to 'Destroy', sclass_path(sclass), method: :delete, data: { confirm: 'Are you sure?' } %>
+						</td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+</div>
