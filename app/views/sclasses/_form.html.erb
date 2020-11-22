@@ -1,24 +1,5 @@
-<%= form_for @sclass do |f| %>
-	<% if @sclass.errors.any? %>
-		<div id="error_explanation">
-			<h2><%= pluralize(@sclass.errors.count, "error") %> prohibited this sclass from being saved:</h2>
-			<ul>
-				<% @sclass.errors.full_messages.each do |msg| %>
-					<li><%= msg %></li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
-	<p>
-		<%= f.label :grade_name %><br>
-		<%= f.text_field :grade_name %>
-	</p>
-	<p>
-		<%= f.label :class_name %><br>
-		<%= f.text_area :class_name %>
-	</p>
-
-	<p>
-		<%= f.submit %>
-	</p>
+<%= bootstrap_form_for(@sclass) do |f| %>
+  <%= f.text_field :grade_name, label: "年级" %>
+  <%= f.text_field :class_name, label: "班级" %>
+  <%= f.submit "保存", class: "btn btn-success" %>
 <% end %>
