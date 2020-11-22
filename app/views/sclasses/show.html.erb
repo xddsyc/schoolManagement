@@ -2,6 +2,8 @@
 	<h1><%= @sclass.id %></h1>
 	<p>
 		<%= link_to '编辑', edit_sclass_path(@sclass), class: 'btn btn-primary' %>
+		<%= link_to '删除', sclass_path(@sclass), method: :delete, data: { confirm: '删除班级会删除班级下的学生，你确定要执行此操作吗?' }, class: 'btn btn-danger' %>
+						</td>
 	</p>
 	<table class="table table-striped table-bordered detail-view">
 		<tr>
