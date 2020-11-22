@@ -1,0 +1,7 @@
+<%= bootstrap_form_for(@student) do |f| %>
+  <%= f.text_field :no, label: "学号" %>
+  <%= f.text_field :name, label: "姓名" %>
+  <% sclasses_array = Sclass::all.map {|sclass| [sclass.grade_name + sclass.class_name, sclass.id] } %>
+  <%= f.select :sclass_id, sclasses_array, {label:"所在班级"}, { class: "selectpicker" }  %>
+  <%= f.submit "保存", class: "btn btn-success" %>
+<% end %>
