@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 	include SessionsHelper
-	breadcrumb 'Home', :root_path
+	breadcrumb '首页', :root_path
 	before_action :require_login
   private
 	  def require_login

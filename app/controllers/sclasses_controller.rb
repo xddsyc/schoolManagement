@@ -1,6 +1,6 @@
 class SclassesController < ApplicationController
 
-	breadcrumb '班级管理', :sclasses_path
+	breadcrumb '班级管理', :sclasses_path, match: :exact
 
 	def index
 		@sclasses = Sclass.order('id desc').page(params[:page]).per(5)
@@ -8,6 +8,8 @@ class SclassesController < ApplicationController
 
 	def new
 		@sclass = Sclass.new
+
+		breadcrumb '新增班级', :new_sclass_path
 	end
 
 	def create
@@ -22,6 +24,9 @@ class SclassesController < ApplicationController
 
 	def edit
 		@sclass = Sclass.find(params[:id])
+
+		breadcrumb @sclass.id.to_s, edit_sclass_path(@sclass)
+		breadcrumb '编辑', edit_sclass_path(@sclass)
 	end
 
 	def update
@@ -37,7 +42,7 @@ class SclassesController < ApplicationController
 	def show
 		@sclass = Sclass.find(params[:id])
 
-		breadcrumb '详情', sclass_path(@sclass)
+		breadcrumb @sclass.id.to_s, sclass_path(@sclass)
 	end
 
 	def destroy

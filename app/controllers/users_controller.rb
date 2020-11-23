@@ -1,11 +1,13 @@
 # 后台用户管理
 class UsersController < ApplicationController 
+  breadcrumb '用户管理', :users_path, match: :exact
   def index
 	@users = User.order('id desc').page(params[:page]).per(5)
   end
 
   def new
   	@user = User.new
+    breadcrumb '新增用户', :new_user_path
   end
 
   def create
@@ -19,6 +21,9 @@ class UsersController < ApplicationController
 
   def edit
   	@user = User.find(params[:id])
+
+    breadcrumb @user.name, user_path(@user)
+    breadcrumb '编辑', user_path(@user)
   end
 
   def update
@@ -34,12 +39,13 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
 
   	@user.destroy
-
-	redirect_to users_path
+    redirect_to users_path
   end
 
   def show
   	@user = User.find(params[:id])
+
+    breadcrumb @user.name, user_path(@user)
   end
 
   private

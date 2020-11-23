@@ -1,10 +1,13 @@
 class StudentsController < ApplicationController
+	breadcrumb '学生管理', :students_path, match: :exact
 	def index
 		@students = Student.order('id desc').page(params[:page]).per(5)
 	end
 
 	def new
 		@student = Student.new
+
+		breadcrumb '新增学生', :new_student_path
 	end
 
 	def create
@@ -19,6 +22,9 @@ class StudentsController < ApplicationController
 
 	def edit
 		@student = Student.find(params[:id])
+
+		breadcrumb @student.name, student_path(@student)
+		breadcrumb '编辑', student_path(@student)
 	end
 
 	def update
@@ -33,6 +39,8 @@ class StudentsController < ApplicationController
 
 	def show
 		@student = Student.find(params[:id])
+
+		# breadcrumb @student.name, student_path(@student)
 	end
 
 	def destroy
