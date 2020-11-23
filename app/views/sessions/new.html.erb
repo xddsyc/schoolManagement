@@ -1,8 +1,15 @@
 <div class="site-login">
 	<h1>Login</h1>
-	<%= bootstrap_form_for(:session, url: :sessions_create) do |f| %>
+	<% if flash.any? %>
+        <% flash.each do |message_type,message| %>
+            <div class="alert alert-<%= message_type %>" >
+              <%= message %>
+            </div>
+         <% end %>
+      <% end %>
+	<%= bootstrap_form_for(:session, url: :login) do |f| %>
 	  <%= f.text_field :name, label: "用户名" %>
 	  <%= f.password_field :password, label: "密码" %>
-	  <%= f.submit "保存", class: "btn btn-primary btn-block" %>
+	  <%= f.submit "登陆", class: "btn btn-primary btn-block" %>
 	<% end %>
 </div>

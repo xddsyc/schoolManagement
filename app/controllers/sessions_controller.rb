@@ -1,22 +1,35 @@
 class SessionsController < ApplicationController
-  layout 'base'
-  def new
-  	@user = User.new
-  end
+  skip_before_action :require_login, only: [:new, :create]
 
-  def create
-  	user = User.find_by(name: user_params[:name]).try(:authenticate, user_params[:password])
+	include SessionsHelper
+  	def new
+  		if current_user
+  			redirect_to sclasses_path
+  		else
+  			@user = User.new
+  		end
+ 	end
 
-  	if user
-  		redirect_to sclasses_path
-  	else
-  		flash.now[:login_error] = '无效的用户名'
-  		render 'new'
+  	def create
+  		user = User.find_by(name: user_params[:name]).try(:authenticate, user_params[:password])
+
+  		if user
+  			login_in(user)
+  			redirect_to sclasses_path
+  		else
+  			flash.now[:danger] = '用户名或密码错误'
+  			render 'new'
+  		end
   	end
-  end
 
-  private
-  	def user_params
-  		params.require(:session).permit(:name, :password)
+  	# 退出登录
+  	def destroy
+  		log_out if logged_in?
+  		redirect_to login_path
   	end
+
+  	private
+  		def user_params
+  			params.require(:session).permit(:name, :password)
+  		end
 end
